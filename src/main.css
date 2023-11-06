@@ -35,6 +35,7 @@
 }
 
 body {
+  overscroll-behavior: none;
   background-color: var(--main-bg-color);
   color: var(--main-text-color);
 }
@@ -52,7 +53,7 @@ textarea {
 
 input::placeholder,
 textarea::placeholder {
-  color: var(--secondary-text-color);
+  color: var(--tertiary-text-color);
   font-weight: bold;
 }
 
@@ -152,11 +153,6 @@ textarea::placeholder {
   align-items: center;
 }
 
-.notes-list-header__searchbar::placeholder {
-  color: var(--tertiary-text-color);
-  font-weight: normal;
-}
-
 .notes-list-header__tab-changer {
   background-color: var(--main-bg-color);
   border-color: var(--secondary-bg-color);
@@ -174,8 +170,6 @@ textarea::placeholder {
   margin-bottom: calc(var(--size) * 12);
 }
 
-
-
 .notes-list__empty-message {
   text-align: center;
   color: var(--secondary-text-color);
@@ -189,6 +183,10 @@ textarea::placeholder {
   flex-direction: column;
 }
 
+.note-item--archived {
+  --main-text-color: var(--warning);
+}
+
 .note-item__content {
   padding: calc(var(--size) * 3);
   flex: 1;
@@ -196,6 +194,7 @@ textarea::placeholder {
 
 .note-item__title {
   margin-bottom: 0;
+  color: var(--main-text-color);
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;

@@ -47,14 +47,16 @@ export class NoteInput extends Component {
       this.props.onAddNote(createNewNote(this.state.title, this.state.body));
     }
 
-    this.setState({ body: "", title: "" });
+    this.setState({ isInputValid: false, body: "", title: "" });
   }
 
   render() {
+    const { title, body, isInputValid } = this.state;
+
     return (
       <div className="note-input">
         <header className="note-input__header">
-          <h2 className="note-input__header-title">new note📝</h2>
+          <h2 className="note-input__header-title">📝new note</h2>
           <span className="note-input__title__char-limit">{`characters left: ${
             NoteInput.MAX_TITLE_LENGTH - this.state.title.length
           }`}</span>
@@ -62,16 +64,20 @@ export class NoteInput extends Component {
 
         <form onSubmit={this.handleSubmit}>
           <input
+            placeholder="title"
             onChange={this.handleTitleChange}
             className="note-input__title"
-            value={this.state.title}
+            value={title}
           />
           <textarea
-            value={this.state.body}
+            value={body}
+            placeholder="body content"
             onChange={this.handleBodyChange}
             className="note-input__body"
           ></textarea>
-          <button disabled={!this.state.isInputValid}>Add Note</button>
+          <button disabled={!isInputValid}>{`${
+            isInputValid ? "✏️ add note" : "🚫 can't add note"
+          }`}</button>
         </form>
       </div>
     );

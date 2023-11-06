@@ -1,7 +1,7 @@
 import { showFormattedDate } from "../utils";
 
 export const NoteItem = ({ note, onDelete, onArchive }) => {
-  const { id, title, body, createdAt } = note;
+  const { id, title, body, archived, createdAt } = note;
 
   function handleDelete() {
     onDelete(id);
@@ -12,7 +12,9 @@ export const NoteItem = ({ note, onDelete, onArchive }) => {
   }
 
   return (
-    <li className="note-item">
+    <li
+      className={`note-item ${archived ? "note-item--archived" : ""}`.trimEnd()}
+    >
       <div className="note-item__content">
         <h3 className="note-item__title">{title}</h3>
         <span className="note-item__date">{showFormattedDate(createdAt)}</span>
@@ -21,10 +23,10 @@ export const NoteItem = ({ note, onDelete, onArchive }) => {
 
       <div className="note-item__action">
         <button onClick={handleDelete} className="note-item__delete-button">
-          delete
+          🗑️ delete
         </button>
         <button onClick={handleArchive} className="note-item__archive-button">
-          archive
+          {archived ? "📂 unarchive" : "📁 archive"}
         </button>
       </div>
     </li>

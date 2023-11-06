@@ -60,12 +60,11 @@ export class NotesList extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // Check if the tab or keyword has changed
     if (
+      prevProps.notes !== this.props.notes ||
       prevState.tab !== this.state.tab ||
       prevState.keyword !== this.state.keyword
     ) {
-      // Update filteredNotes based on the new tab and keyword
       const newFilteredNotes = this.getFilteredNotes(
         this.props.notes,
         this.state.tab,
@@ -84,7 +83,7 @@ export class NotesList extends Component {
       <div>
         <header className="notes-list-header">
           <div className="notes-list-header__top">
-            <h2>{`${tab} notes`}</h2>
+            <h2>{`🗒️${tab} notes`}</h2>
             <NotesTabSelector tab={tab} onTabChange={this.onTabChange} />
           </div>
           <NoteSearchbar
@@ -94,7 +93,7 @@ export class NotesList extends Component {
         </header>
 
         {filteredNotes.length === 0 ? (
-          <p className="notes-list__empty-message">no notes here!</p>
+          <p className="notes-list__empty-message">no notes here 🙅</p>
         ) : (
           <ul className="notes-list">
             {filteredNotes.map(note => {
